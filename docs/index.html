@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edward Mackiewicz — Pisarz, Patriota, Świadek Historii</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0f1923;
+      --navy2:  #1a2535;
+      --navy3:  #243040;
+      --gold:   #c9a84c;
+      --gold2:  #e8c96a;
+      --cream:  #f5f0e8;
+      --cream2: #ede6d6;
+      --text:   #2c2c2c;
+      --muted:  #8a8a8a;
+      --white:  #ffffff;
+      --radius: 4px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(15, 25, 35, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.25);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 20% 30%, rgba(201,168,76,0.05) 0%, transparent 60%);
+    }
+    .hero-lines {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: repeating-linear-gradient(0deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 80px),
+                        repeating-linear-gradient(90deg, #c9a84c 0, #c9a84c 1px, transparent 0, transparent 80px);
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+      display: grid; grid-template-columns: 1fr 380px; gap: 4rem; align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 36px; height: 1px; background: var(--gold);
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: var(--white); line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .hero-title span { color: var(--gold); }
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      color: rgba(255,255,255,0.55);
+      font-style: italic; margin-bottom: 2rem;
+    }
+    .hero-desc {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.15rem; line-height: 1.75;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px; margin-bottom: 2.5rem;
+    }
+    .hero-stats {
+      display: flex; gap: 2.5rem;
+    }
+    .stat { }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; color: var(--gold); font-weight: 700;
+    }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); margin-top: 0.2rem;
+    }
+    .hero-img-wrap {
+      position: relative;
+    }
+    .hero-img-frame {
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 12px;
+      background: var(--navy2);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.1);
+    }
+    .hero-img-frame img {
+      width: 100%; display: block;
+      filter: grayscale(15%) contrast(1.05);
+    }
+    .hero-img-badge {
+      position: absolute; bottom: -18px; right: -18px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.6rem 1rem;
+      box-shadow: 0 8px 24px rgba(201,168,76,0.4);
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.35); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll::after {
+      content: ''; display: block; width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+    }
+    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+    /* ─── SECTION WRAPPER ─── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      line-height: 1.15; margin-bottom: 1.5rem;
+    }
+
+    /* ─── BIOGRAPHY ─── */
+    #biography { background: var(--white); }
+    .bio-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+    .bio-text {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.15rem; line-height: 1.85; color: #3a3a3a;
+    }
+    .bio-text p { margin-bottom: 1.25rem; }
+    .bio-text p:first-child::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 700; color: var(--gold);
+      float: left; line-height: 0.75; margin-right: 0.15em; margin-top: 0.1em;
+    }
+    .bio-aside { }
+    .bio-coat {
+      background: var(--navy);
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .bio-coat img { width: 160px; opacity: 0.9; }
+    .bio-coat-label {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; color: rgba(255,255,255,0.6);
+      font-size: 0.85rem; margin-top: 1rem;
+    }
+    .bio-facts { display: flex; flex-direction: column; gap: 0; }
+    .bio-fact {
+      display: flex; align-items: flex-start; gap: 1.25rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--cream2);
+    }
+    .bio-fact:last-child { border-bottom: none; }
+    .bio-fact-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--gold); color: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .bio-fact-text strong {
+      display: block; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.2rem;
+    }
+    .bio-fact-text span {
+      font-family: 'Crimson Text', serif;
+      font-size: 1rem; color: var(--text);
+    }
+
+    /* ─── QUOTE BANNER ─── */
+    #quote {
+      background: var(--navy);
+      padding: 5rem 2rem;
+    }
+    .quote-inner {
+      max-width: 860px; margin: 0 auto; text-align: center;
+    }
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem; color: var(--gold); opacity: 0.3;
+      line-height: 0; margin-bottom: 1.5rem; display: block;
+    }
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+      color: var(--white); font-style: italic; line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .quote-attr {
+      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ─── BOOKS ─── */
+    #books { background: var(--cream); }
+    .books-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 3.5rem; gap: 2rem;
+    }
+    .books-header-desc {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.1rem; color: var(--muted); max-width: 420px; line-height: 1.6;
+    }
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2.5rem;
+    }
+    .book-card {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .book-card:hover { transform: translateY(-8px); }
+    .book-card:hover .book-cover { box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+    .book-cover-wrap {
+      perspective: 1000px;
+      margin-bottom: 1.25rem;
+    }
+    .book-cover {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18), -4px 4px 0 rgba(0,0,0,0.08);
+      transition: box-shadow 0.3s ease;
+    }
+    .book-cover img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+      display: block;
+    }
+    .book-cover::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .book-spine {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: linear-gradient(to right, rgba(0,0,0,0.25), rgba(0,0,0,0.05));
+    }
+    .book-info { }
+    .book-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700; line-height: 1.3;
+      margin-bottom: 0.3rem; color: var(--navy);
+    }
+    .book-vol {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .book-desc {
+      font-family: 'Crimson Text', serif;
+      font-size: 0.95rem; color: var(--muted); line-height: 1.5;
+    }
+    .book-year {
+      display: inline-block; margin-top: 0.5rem;
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(0,0,0,0.3); border-top: 1px solid var(--cream2); padding-top: 0.4rem;
+    }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(10,15,22,0.92);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--white);
+      max-width: 780px; width: 100%;
+      display: grid; grid-template-columns: 240px 1fr; gap: 0;
+      position: relative;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+      transform: scale(0.95) translateY(20px);
+      transition: transform 0.3s;
+    }
+    .modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+    .modal-cover {
+      width: 100%; height: 100%; object-fit: cover; object-position: top;
+      display: block;
+    }
+    .modal-content {
+      padding: 2.5rem;
+      display: flex; flex-direction: column;
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--navy); color: var(--white);
+      border: none; cursor: pointer;
+      width: 36px; height: 36px;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-label {
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; line-height: 1.2; margin-bottom: 0.3rem; color: var(--navy);
+    }
+    .modal-vol {
+      font-size: 0.8rem; color: var(--muted); margin-bottom: 1.25rem;
+    }
+    .modal-divider {
+      width: 40px; height: 2px; background: var(--gold); margin-bottom: 1.25rem;
+    }
+    .modal-desc {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.1rem; line-height: 1.75; color: #444;
+      flex: 1;
+    }
+    .modal-meta {
+      margin-top: 1.5rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--cream2);
+      display: flex; gap: 2rem; flex-wrap: wrap;
+    }
+    .modal-meta-item strong {
+      display: block; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.2rem;
+    }
+    .modal-meta-item span {
+      font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--navy);
+    }
+
+    /* ─── TIMELINE ─── */
+    #timeline { background: var(--navy); }
+    #timeline .section-title { color: var(--white); }
+    .timeline { position: relative; max-width: 680px; margin: 0 auto; padding-left: 2.5rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, var(--gold) 0%, rgba(201,168,76,0.2) 100%);
+    }
+    .tl-item { position: relative; padding-bottom: 2.5rem; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -2.5rem;
+      width: 9px; height: 9px;
+      background: var(--gold);
+      border: 2px solid var(--navy);
+      border-radius: 50%; top: 0.4rem;
+      margin-left: -4px;
+    }
+    .tl-year {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.3rem;
+    }
+    .tl-text {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.05rem; color: rgba(255,255,255,0.7); line-height: 1.6;
+    }
+    .tl-text strong { color: var(--white); font-weight: 600; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #080f18;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold); font-size: 1.4rem; margin-bottom: 0.75rem;
+    }
+    .footer-pub {
+      font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-bottom: 0.4rem;
+    }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(255,255,255,0.2); margin-top: 2rem;
+    }
+    .footer-divider {
+      width: 60px; height: 1px; background: rgba(201,168,76,0.3);
+      margin: 1.25rem auto;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-desc { margin: 0 auto 2.5rem; }
+      .hero-img-wrap { max-width: 320px; margin: 0 auto; }
+      .bio-grid { grid-template-columns: 1fr; }
+      .books-header { flex-direction: column; align-items: flex-start; }
+      .modal-box { grid-template-columns: 1fr; }
+      .modal-cover { height: 240px; }
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1.25rem; }
+    }
+    @media (max-width: 600px) {
+      .nav-links li:nth-child(n+3) { display: none; }
+      .books-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
+
+    /* ─── FADE-IN ANIMATION ─── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+    .fade-up:nth-child(6) { transition-delay: 0.5s; }
+    .fade-up:nth-child(7) { transition-delay: 0.6s; }
+    .fade-up:nth-child(8) { transition-delay: 0.7s; }
+    .fade-up:nth-child(9) { transition-delay: 0.8s; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Edward Mackiewicz</a>
+  <ul class="nav-links">
+    <li><a href="#biography">O Autorze</a></li>
+    <li><a href="#books">Książki</a></li>
+    <li><a href="#timeline">Biografia</a></li>
+    <li><a href="#quote">Cytaty</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Pisarz i Historyk</div>
+      <h1 class="hero-title">Edward<br><span>Mackiewicz</span></h1>
+      <p class="hero-subtitle">Kronikarz Kresów Wschodnich</p>
+      <p class="hero-desc">
+        Syn Ziemi Wileńskiej, wygnany przez historię, osiadły na Warmii —
+        całe życie poświęcił upamiętnieniu losów Polaków z Kresów Wschodnich.
+        Jego słowa to testament dla przyszłych pokoleń.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">9+</div>
+          <div class="stat-label">Opublikowanych<br>Książek</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">80+</div>
+          <div class="stat-label">Lat<br>Życia</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1946</div>
+          <div class="stat-label">Wygnanie z<br>Wileńszczyzny</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <div class="hero-img-frame">
+        <img src="covers/portrait.jpg" alt="Edward Mackiewicz" />
+      </div>
+      <div class="hero-img-badge">Edward Mackiewicz</div>
+    </div>
+  </div>
+  <div class="hero-scroll">Przewiń w dół</div>
+</section>
+
+<!-- BIOGRAPHY -->
+<section id="biography">
+  <div class="container">
+    <div class="bio-grid">
+      <div>
+        <div class="section-label">O Autorze</div>
+        <h2 class="section-title">Pisarz wygnany przez historię,<br>ocalały dla pamięci</h2>
+        <div class="bio-text">
+          <p>
+            Edward Mackiewicz urodził się na Ziemi Wileńskiej, w rodzinie szlacheckiej
+            pieczętującej się herbem <em>Lubicz Boża Wola</em> — jednego z najstarszych
+            kresowych rodów rycerskich. Dzieciństwo spędził w cieniu II wojny światowej,
+            dorastając w atmosferze polskości, patriotyzmu i głębokiej więzi z ziemią przodków.
+          </p>
+          <p>
+            W 1946 roku historia brutalnie oderwała go od rodzinnych stron. Wraz z matką
+            i siostrą został wywieziony pociągiem towarowym z ukochanej Wileńszczyzny.
+            Zamiast do Poznania — jak zapowiadano — trafił do Olsztyna, gdzie z „repatriantem"
+            stał się Warmiakiem z nadania Stalina i Churchilla.
+          </p>
+          <p>
+            Przez dziesięciolecia Edward Mackiewicz działał społecznie na rzecz uchodźców
+            i wypędzonych z Kresów. Był prezesem Stowarzyszenia Polskich Dzieci Wojny
+            w Olsztynie oraz założycielem i przewodniczącym Ogólnopolskiego Patriotycznego
+            Związku Wypędzonych. Osiadł w Dywitach pod Olsztynem, gdzie prowadzi swoje
+            wydawnictwo <em>„Virtuti Militari"</em>.
+          </p>
+          <p>
+            Piszę, bo <em>naród który traci pamięć — traci życie</em>. Ta myśl przewija się
+            przez wszystkie jego książki — świadectwa polskiego losu, które nie pozwalają
+            zapomnieć o ludziach i miejscach pochłoniętych przez historię.
+          </p>
+        </div>
+      </div>
+      <div class="bio-aside">
+        <div class="bio-coat">
+          <img src="covers/herb.jpg" alt="Herb Mackiewiczów"
+               style="width:80%; max-width:220px; filter: none;" />
+          <div class="bio-coat-label">
+            Herb rycerski Lubicz Boża Wola<br>Kresowego rodu Mackiewiczów
+          </div>
+        </div>
+        <div class="bio-facts">
+          <div class="bio-fact">
+            <div class="bio-fact-icon">⚜</div>
+            <div class="bio-fact-text">
+              <strong>Pochodzenie</strong>
+              <span>Ziemia Wileńska, rodzina szlachecka herbu Lubicz Boża Wola</span>
+            </div>
+          </div>
+          <div class="bio-fact">
+            <div class="bio-fact-icon">🏠</div>
+            <div class="bio-fact-text">
+              <strong>Miejsce zamieszkania</strong>
+              <span>Dywity koło Olsztyna, Warmia i Mazury</span>
+            </div>
+          </div>
+          <div class="bio-fact">
+            <div class="bio-fact-icon">📚</div>
+            <div class="bio-fact-text">
+              <strong>Wydawnictwo</strong>
+              <span>„Virtuti Militari", Dywity, ul. Olsztyńska 46</span>
+            </div>
+          </div>
+          <div class="bio-fact">
+            <div class="bio-fact-icon">🏅</div>
+            <div class="bio-fact-text">
+              <strong>Działalność społeczna</strong>
+              <span>Prezes Stowarzyszenia Polskich Dzieci Wojny w Olsztynie; Założyciel Ogólnopolskiego Patriotycznego Związku Wypędzonych</span>
+            </div>
+          </div>
+          <div class="bio-fact">
+            <div class="bio-fact-icon">✒</div>
+            <div class="bio-fact-text">
+              <strong>Tematyka twórczości</strong>
+              <span>Kresy Wschodnie, II wojna światowa, losy Polaków na Wileńszczyźnie, historia Warmii</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="quote">
+  <div class="quote-inner">
+    <span class="quote-mark">"</span>
+    <p class="quote-text">
+      Granice państw przesuwają się i zmieniają, ale prawdziwe są zawsze słowa,
+      że ojczyzna to ziemia i groby. Jak długo trwa pamięć o grobach,
+      tak długo trwa siła związku z ojczyzną.
+    </p>
+    <div class="quote-attr">— Edward Mackiewicz, „Burza nad Niemnem"</div>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section id="books">
+  <div class="container">
+    <div class="books-header">
+      <div>
+        <div class="section-label">Dorobek Literacki</div>
+        <h2 class="section-title">Wszystkie Książki</h2>
+      </div>
+      <p class="books-header-desc">
+        Każda z tych książek to osobista misja — ocalenie od zapomnienia
+        ludzi, miejsc i wydarzeń, które ukształtowały polską tożsamość.
+      </p>
+    </div>
+    <div class="books-grid" id="booksGrid">
+
+      <div class="book-card fade-up" data-book="gdzie">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/mackiewicz-gdzie-sa-chlopcy-ebook_(1)-001.jpg" alt="Gdzie są chłopcy z tamtych lat" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Gdzie Są Chłopcy z Tamtych Lat</div>
+          <div class="book-desc">Hołd dla bohaterskich żołnierzy AK i polskich partyzantów z Kresów.</div>
+          <div class="book-year">Dywity 2018 · Wydanie I</div>
+        </div>
+      </div>
+
+      <div class="book-card fade-up" data-book="ojczyzna">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/mackiewicz-ojczyzna-to-ziemia-i-groby-ebook_(2)-001.jpg" alt="Ojczyzna to ziemia i groby" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Ojczyzna to Ziemia i Groby</div>
+          <div class="book-desc">Refleksja o więzi z utraconą ojczyzną i pamięci o grobach przodków.</div>
+          <div class="book-year">Dywity 2018</div>
+        </div>
+      </div>
+
+      <div class="book-card fade-up" data-book="zdradzeni">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/mackiewicz-zdradzeni_ebook_(1)-001.jpg" alt="Zdradzeni i Oszukani" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Zdradzeni i Oszukani</div>
+          <div class="book-vol">Tomik III</div>
+          <div class="book-desc">Gorzka prawda o zdradzie aliantów i losie Polaków po II wojnie.</div>
+          <div class="book-year">Dywity 2018</div>
+        </div>
+      </div>
+
+      <div class="book-card fade-up" data-book="syrdaria">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/mackiewicz-znadspienionej-ebook-01.jpg" alt="Znad Spienionej Syr-Darii" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Znad Spienionej Syr-Darii</div>
+          <div class="book-vol">Tomik IV</div>
+          <div class="book-desc">Droga polskich żołnierzy przez sowieckie łagry Azji Środkowej ku wolności.</div>
+          <div class="book-year">Dywity 2018</div>
+        </div>
+      </div>
+
+      <div class="book-card fade-up" data-book="burza">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/mackiewicz-burza-nad-niemnem-001.jpg" alt="Burza nad Niemnem" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Burza nad Niemnem</div>
+          <div class="book-desc">Burzliwe dzieje Ziemi Wileńskiej — historia Polaków, którzy walczyli o tożsamość nad rzeką Niemen.</div>
+          <div class="book-year">Dywity 2018 · Wydanie II</div>
+        </div>
+      </div>
+
+      <div class="book-card fade-up" data-book="knieje">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/mackiewicz-o_tym-szumia-knieje-DRUK-001.jpg" alt="O Czym Szumią Knieje" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">O Czym Szumią Knieje</div>
+          <div class="book-desc">Opowieść o pięknie i historii puszczy wileńskiej — niemego świadka polskich dziejów.</div>
+          <div class="book-year">Dywity</div>
+        </div>
+      </div>
+
+      <div class="book-card fade-up" data-book="polskie-drogi">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/mackiewicz-polskie-drogi-DRUK_(1)-001.jpg" alt="Wichry Wojen – Polskie Drogi i Bezdroża" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Wichry Wojen</div>
+          <div class="book-vol">Polskie Drogi i Bezdroża</div>
+          <div class="book-desc">Panorama polskich losów w czasie wojen — drogi i bezdroża na drodze ku wolności.</div>
+          <div class="book-year">Dywity 2019 · Wydanie II Rozszerzone</div>
+        </div>
+      </div>
+
+      <div class="book-card fade-up" data-book="wichry">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/WICHRY_POLSKICH_DZIEJÓW_DO_DRUKU-001.jpg" alt="Wichry Polskich Dziejów" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Wichry Polskich Dziejów</div>
+          <div class="book-desc">Przegląd burzliwych kart historii Polski — od Jagiellonów po czasy współczesne.</div>
+          <div class="book-year">Dywity</div>
+        </div>
+      </div>
+
+      <div class="book-card fade-up" data-book="cuda">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/cuda-001.jpg" alt="Cuda Między Wisłą a Niemnem" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Cuda Między Wisłą a Niemnem</div>
+          <div class="book-desc">Niezwykłe miejsca i zapomniane piękno ziem między Wisłą a Niemnem.</div>
+          <div class="book-year">Dywity · Nowe wydanie</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold);">Życiorys</div>
+    <h2 class="section-title" style="color:var(--white); margin-bottom:3rem;">Kamienie Milowe</h2>
+    <div class="timeline">
+
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">Urodziny</div>
+        <div class="tl-text">
+          Przyszedł na świat na <strong>Ziemi Wileńskiej</strong> w rodzinie
+          szlacheckiej herbu Lubicz Boża Wola — jednego z najstarszych
+          kresowych rodów rycerskich.
+        </div>
+      </div>
+
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1939–1945</div>
+        <div class="tl-text">
+          Dzieciństwo w cieniu <strong>II wojny światowej</strong>. Jego ojciec,
+          <strong>Konstanty Mackiewicz</strong>, walczył i poległ jako żołnierz
+          Oddziału Partyzanckiego „Żuka" <strong>7. Wileńskiej Brygady AK</strong>.
+          Tę książkę Edward dedykuje pamięci ojca.
+        </div>
+      </div>
+
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1946</div>
+        <div class="tl-text">
+          <strong>Przymusowe wysiedlenie</strong> z Wileńszczyzny. Wraz z matką
+          i siostrą wywieziony pociągiem towarowym — zamiast do Poznania,
+          trafił do Olsztyna. Z Kresowian stał się „Warmiakiem z nadania Stalina i Churchilla".
+        </div>
+      </div>
+
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">Lata 50.</div>
+        <div class="tl-text">
+          Nauka w <strong>Zasadniczej Szkole Górniczej</strong> w Szopienicach
+          (Katowice). Praca w kopalniach Śląska — doświadczenia opisane
+          później w autobiograficznych wspomnieniach.
+        </div>
+      </div>
+
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">Powrót na Warmię</div>
+        <div class="tl-text">
+          Osiadł w <strong>Dywitach</strong> pod Olsztynem, które stały się jego
+          nową małą ojczyzną. Rozpoczął aktywną działalność społeczną
+          na rzecz Polaków z Kresów Wschodnich.
+        </div>
+      </div>
+
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">Działalność społeczna</div>
+        <div class="tl-text">
+          <strong>Prezes</strong> Stowarzyszenia Polskich Dzieci Wojny w Olsztynie.
+          <strong>Założyciel i Przewodniczący</strong> Ogólnopolskiego Patriotycznego
+          Związku Wypędzonych. Niestrudzony rzecznik praw Polaków z Kresów.
+        </div>
+      </div>
+
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2018–2019</div>
+        <div class="tl-text">
+          Intensywny okres twórczości — publikuje kolejne tomy swojej
+          <strong>serii dokumentalnej</strong>: „Gdzie są chłopcy z tamtych lat",
+          „Zdradzeni i Oszukani", „Burza nad Niemnem", „Wichry Wojen".
+        </div>
+      </div>
+
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">Dziś</div>
+        <div class="tl-text">
+          Kontynuuje pisanie i działalność wydawniczą w <strong>Wydawnictwie
+          „Virtuti Militari"</strong> w Dywitach. Jego książki są świadectwem
+          nieprzemijającej pamięci o Kresach Wschodnich.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Edward Mackiewicz</div>
+  <div class="footer-pub">Wydawnictwo „Virtuti Militari"</div>
+  <div class="footer-pub">11-001 Dywity, ul. Olsztyńska 46</div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">
+    Wszelkie prawa autorskie zastrzeżone © Edward Mackiewicz<br>
+    Strona przygotowana przez rodzinę autora
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Zamknij">✕</button>
+    <img class="modal-cover" id="modalCover" src="" alt="" />
+    <div class="modal-content">
+      <div class="modal-label" id="modalLabel">Książka</div>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <div class="modal-vol" id="modalVol"></div>
+      <div class="modal-divider"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── BOOKS DATA ──
+  const books = {
+    gdzie: {
+      title: 'Gdzie Są Chłopcy z Tamtych Lat',
+      vol: '',
+      cover: 'covers/mackiewicz-gdzie-sa-chlopcy-ebook_(1)-001.jpg',
+      desc: 'Wzruszający hołd dla bohaterskich żołnierzy Armii Krajowej, partyzantów i wszystkich tych, którzy oddali życie lub młodość w walce o wolność Ojczyzny. Mackiewicz przywołuje wspomnienia kolegów i świadków historii, ratując od zapomnienia imiona tych, których historia chciała przemilczeć. Na okładce — Krzyż Virtuti Militari, symbol polskiego bohaterstwa.',
+      year: '2018', isbn: '978-83-950297-6-9', edition: 'Wydanie I'
+    },
+    ojczyzna: {
+      title: 'Ojczyzna to Ziemia i Groby',
+      vol: '',
+      cover: 'covers/mackiewicz-ojczyzna-to-ziemia-i-groby-ebook_(2)-001.jpg',
+      desc: 'Głęboka refleksja nad losem Polaków wygnanych z Kresów Wschodnich. Autor rozważa sens słów pieśni „Nie rzućmy ziemi skąd nasz ród" wobec brutalnej rzeczywistości wysiedleń. Groby przodków na Ziemi Wileńskiej, Nowogródzkiej i Wołyńskiej pozostają niemymi świadkami polskości tych ziem. Dopóki trwa pamięć o grobach — trwa więź z ojczyzną.',
+      year: '2018', isbn: '', edition: 'Dywity'
+    },
+    zdradzeni: {
+      title: 'Zdradzeni i Oszukani',
+      vol: 'Tomik III',
+      cover: 'covers/mackiewicz-zdradzeni_ebook_(1)-001.jpg',
+      desc: 'Trzeci tom dokumentalnej serii Mackiewicza ujawnia gorzką prawdę o tym, jak zachodni alianci — Wielka Brytania i Francja — porzucili Polskę. Autor cytuje m.in. haniebne przemówienie Churchilla z 22 lutego 1944 roku, kiedy polscy żołnierze krwawili pod Monte Cassino. Polska została sprzedana Sowietom za przysłowiową miskę strawy. Książka dokumentuje tę zdradę z niezbytą precyzją i pasją świadka historii.',
+      year: '2018', isbn: '', edition: 'Tomik III'
+    },
+    syrdaria: {
+      title: 'Znad Spienionej Syr-Darii',
+      vol: 'Tomik IV',
+      cover: 'covers/mackiewicz-znadspienionej-ebook-01.jpg',
+      desc: 'Czwarty tom serii opisuje dramatyczne losy polskich żołnierzy i deportowanych, którzy przez piekło sowieckich łagrów w Azji Środkowej przemierzyli tysiące kilometrów. Syr-Daria — rzeka w Kazachstanie i Uzbekistanie — stała się symbolem martyrologii Polaków deportowanych na Wschód. Z tych odległych krain wielu nigdy nie wróciło.',
+      year: '2018', isbn: '', edition: 'Tomik IV'
+    },
+    burza: {
+      title: 'Burza nad Niemnem',
+      vol: '',
+      cover: 'covers/mackiewicz-burza-nad-niemnem-001.jpg',
+      desc: 'Panorama burzliwych dziejów Ziemi Wileńskiej — opowieść o Polakach, którzy przez ponad 1000 lat zamieszkiwali te ziemie i walczyli o swoją tożsamość. Niemen, ta wielka polska rzeka, był świadkiem chwały i tragedii. Autor przywołuje historię od czasów Jagiellonów, przez walki Armii Krajowej, aż po powojenne wysiedlenia. To książka o tym, że ojczyzna to ziemia — i ta ziemia pamięta.',
+      year: '2018', isbn: '978-83-950297-5-2', edition: 'Wydanie II'
+    },
+    knieje: {
+      title: 'O Czym Szumią Knieje',
+      vol: '',
+      cover: 'covers/mackiewicz-o_tym-szumia-knieje-DRUK-001.jpg',
+      desc: 'Szumią one o dawnych, dawnych dziejach — o wielkiej i wspaniałej Polsce czasów Jagiellonów, o dzielnych Polakach, którzy wspólnie z Litwinami na Ziemi Wileńskiej żyli od wieków. Puszcza Rudnicka i bory wileńskie to niemymi świadkami historii, w których echa bitew mieszają się z szumem wiekowych drzew. Opowieść o krajobrazie, który ukształtował duszę polskiego Kresowiaka.',
+      year: 'Dywity', isbn: '', edition: ''
+    },
+    'polskie-drogi': {
+      title: 'Wichry Wojen — Polskie Drogi i Bezdroża',
+      vol: '',
+      cover: 'covers/mackiewicz-polskie-drogi-DRUK_(1)-001.jpg',
+      desc: 'Rozszerzone wydanie drugiego tomu serii, w którym autor kreśli panoramę polskich losów w czasie obu wojen światowych. Drogi i bezdroża — metafora życia pokoleń Polaków, którzy musieli uciekać, walczyć, przeżywać. Na okładce autor umieścił własne zdjęcie — to książka głęboko osobista, napisana przez człowieka, który te drogi sam przemierzył.',
+      year: '2019', isbn: '978-83-9502971-4', edition: 'Wydanie II Rozszerzone'
+    },
+    wichry: {
+      title: 'Wichry Polskich Dziejów',
+      vol: '',
+      cover: 'covers/WICHRY_POLSKICH_DZIEJÓW_DO_DRUKU-001.jpg',
+      desc: 'Obszerna synteza historii Polski — od wielkich czasów Jagiellonów po tragiczne wydarzenia XX wieku. Mackiewicz kreśli losy narodu, który przez wieki zmagał się z agresywnymi sąsiadami, zachowując mimo wszystko swoją tożsamość i wolę walki. Historia przestroga i historia nadzieja — pisana z perspektywy człowieka, który jej konsekwencje odczuł na własnej skórze.',
+      year: 'Dywity', isbn: '', edition: ''
+    },
+    cuda: {
+      title: 'Cuda Między Wisłą a Niemnem',
+      vol: '',
+      cover: 'covers/cuda-001.jpg',
+      desc: 'Podróż przez niezwykłe miejsca rozciągające się między dwiema wielkimi rzekami — Wisłą a Niemnem. Autor odkrywa zapomniane perły architektury, cudowne krajobrazy i zapomniane zakątki, które przez wieki były świadkami polskiej historii i kultury. Książka będąca połączeniem przewodnika, albumu i osobistego wyznania miłości do tej ziemi.',
+      year: 'Dywity · Nowe wydanie', isbn: '', edition: ''
+    }
+  };
+
+  // ── MODAL ──
+  const overlay = document.getElementById('modal');
+  const btnClose = document.getElementById('modalClose');
+
+  document.querySelectorAll('.book-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.book;
+      const b = books[key];
+      if (!b) return;
+      document.getElementById('modalTitle').textContent = b.title;
+      document.getElementById('modalVol').textContent = b.vol;
+      document.getElementById('modalDesc').textContent = b.desc;
+      document.getElementById('modalCover').src = b.cover;
+      document.getElementById('modalCover').alt = b.title;
+      let meta = '';
+      if (b.year) meta += `<div class="modal-meta-item"><strong>Rok</strong><span>${b.year}</span></div>`;
+      if (b.edition) meta += `<div class="modal-meta-item"><strong>Wydanie</strong><span>${b.edition}</span></div>`;
+      if (b.isbn) meta += `<div class="modal-meta-item"><strong>ISBN</strong><span>${b.isbn}</span></div>`;
+      document.getElementById('modalMeta').innerHTML = meta;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  btnClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── SCROLL ANIMATIONS ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── NAV ACTIVE SCROLL ──
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50 ? 'rgba(15,25,35,0.98)' : 'rgba(15,25,35,0.95)';
+  });
+</script>
+</body>
+</html>
