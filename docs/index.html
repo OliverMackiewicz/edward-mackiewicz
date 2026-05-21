@@ -284,10 +284,11 @@
       overflow: hidden;
       box-shadow: 0 12px 32px rgba(0,0,0,0.18), -4px 4px 0 rgba(0,0,0,0.08);
       transition: box-shadow 0.3s ease;
+      background: var(--navy2);
     }
     .book-cover img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: top;
+      object-fit: contain; object-position: center;
       display: block;
     }
     .book-cover::after {
@@ -343,8 +344,9 @@
     }
     .modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
     .modal-cover {
-      width: 100%; height: 100%; object-fit: cover; object-position: top;
+      width: 100%; height: 100%; object-fit: contain; object-position: center;
       display: block;
+      background: var(--navy2);
     }
     .modal-content {
       padding: 2.5rem;
@@ -458,6 +460,95 @@
       .books-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     }
 
+    /* ─── NO-POPUP BOOK CARDS ─── */
+    .book-card.no-popup { cursor: default; }
+    .book-card.no-popup:hover { transform: none; }
+    .book-card.no-popup:hover .book-cover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18), -4px 4px 0 rgba(0,0,0,0.08);
+    }
+
+    /* ─── BOOKS SERIES SEPARATOR ─── */
+    .books-separator {
+      grid-column: 1 / -1;
+      padding-top: 2rem;
+      border-top: 1px solid var(--cream2);
+      margin-top: 0.5rem;
+    }
+    .books-sep-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+    .books-sep-label::before {
+      content: ''; display: block; width: 24px; height: 1px; background: var(--gold);
+    }
+    .books-sep-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--navy);
+    }
+
+    /* ─── INTERVIEW ─── */
+    #interview { background: var(--white); }
+    .interview-inner { max-width: 780px; margin: 0 auto; }
+    .interview-date {
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .interview-date::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
+    }
+    .qa-block {
+      margin-bottom: 2.75rem;
+      padding-bottom: 2.75rem;
+      border-bottom: 1px solid var(--cream2);
+    }
+    .qa-num {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .qa-question {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-style: italic; line-height: 1.5;
+      color: var(--navy); margin-bottom: 1.1rem;
+      padding-left: 1.1rem; border-left: 3px solid var(--gold);
+    }
+    .qa-answer {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.1rem; line-height: 1.85; color: #3a3a3a;
+    }
+    .qa-answer p { margin-bottom: 0.9rem; }
+    .qa-answer p:last-child { margin-bottom: 0; }
+    .qa-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; color: var(--navy);
+      border-left: 3px solid rgba(201,168,76,0.5);
+      padding-left: 1.25rem; margin: 0.85rem 0;
+      font-size: 1.02rem; line-height: 1.65;
+    }
+    .qa-list {
+      padding-left: 1.5rem; margin: 0.5rem 0;
+    }
+    .qa-list li { margin-bottom: 0.3rem; }
+    .interview-sign {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-style: italic; color: var(--gold);
+      text-align: right; margin-top: 2rem;
+      padding-top: 1.5rem; border-top: 1px solid var(--cream2);
+    }
+    .interview-pdf {
+      text-align: center; margin-top: 2.5rem;
+    }
+    .btn-pdf {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--navy); color: var(--gold);
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.85rem 2rem; text-decoration: none;
+      border: 1px solid rgba(201,168,76,0.3);
+      transition: background 0.2s;
+    }
+    .btn-pdf:hover { background: var(--navy2); }
+
     /* ─── FADE-IN ANIMATION ─── */
     .fade-up {
       opacity: 0; transform: translateY(30px);
@@ -484,6 +575,7 @@
     <li><a href="#books">Książki</a></li>
     <li><a href="#timeline">Biografia</a></li>
     <li><a href="#quote">Cytaty</a></li>
+    <li><a href="#interview">Wywiad</a></li>
   </ul>
 </nav>
 
@@ -503,7 +595,7 @@
       </p>
       <div class="hero-stats">
         <div class="stat">
-          <div class="stat-num">9+</div>
+          <div class="stat-num">20+</div>
           <div class="stat-label">Opublikowanych<br>Książek</div>
         </div>
         <div class="stat">
@@ -696,25 +788,12 @@
         </div>
       </div>
 
-      <div class="book-card fade-up" data-book="burza">
-        <div class="book-cover-wrap">
-          <div class="book-cover">
-            <div class="book-spine"></div>
-            <img src="covers/mackiewicz-burza-nad-niemnem-001.jpg" alt="Burza nad Niemnem" />
-          </div>
-        </div>
-        <div class="book-info">
-          <div class="book-title">Burza nad Niemnem</div>
-          <div class="book-desc">Burzliwe dzieje Ziemi Wileńskiej — historia Polaków, którzy walczyli o tożsamość nad rzeką Niemen.</div>
-          <div class="book-year">Dywity 2018 · Wydanie II</div>
-        </div>
-      </div>
 
       <div class="book-card fade-up" data-book="knieje">
         <div class="book-cover-wrap">
           <div class="book-cover">
             <div class="book-spine"></div>
-            <img src="covers/mackiewicz-o_tym-szumia-knieje-DRUK-001.jpg" alt="O Czym Szumią Knieje" />
+            <img src="covers/knieje-nadwislanskie.png" alt="O Czym Szumią Nadwiślańskie Knieje" />
           </div>
         </div>
         <div class="book-info">
@@ -728,7 +807,7 @@
         <div class="book-cover-wrap">
           <div class="book-cover">
             <div class="book-spine"></div>
-            <img src="covers/mackiewicz-polskie-drogi-DRUK_(1)-001.jpg" alt="Wichry Wojen – Polskie Drogi i Bezdroża" />
+            <img src="covers/wichry-wojen-najezdcy.png" alt="Wichry Wojen — Najeźdźcy, Zwyciężeni Lecz Niepokonani" />
           </div>
         </div>
         <div class="book-info">
@@ -764,6 +843,149 @@
           <div class="book-title">Cuda Między Wisłą a Niemnem</div>
           <div class="book-desc">Niezwykłe miejsca i zapomniane piękno ziem między Wisłą a Niemnem.</div>
           <div class="book-year">Dywity · Nowe wydanie</div>
+        </div>
+      </div>
+
+      <!-- ── SERIA: FAKTY I MITY ── -->
+      <div class="books-separator fade-up">
+        <div class="books-sep-label">Seria Dokumentalna</div>
+        <div class="books-sep-title">Fakty i Mity</div>
+      </div>
+
+      <div class="book-card no-popup fade-up">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/fakty-mity-1-bitwa.png" alt="Fakty i Mity — Bitwa Warszawska 1920" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Bitwa Warszawska 1920</div>
+          <div class="book-vol">Fakty i Mity · Tom I</div>
+        </div>
+      </div>
+
+      <div class="book-card no-popup fade-up">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/fakty-mity-2-najezdcy.png" alt="Fakty i Mity — Najeźdźcy" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Najeźdźcy</div>
+          <div class="book-vol">Fakty i Mity · Tom II · Kampania Wrześniowa 1939</div>
+        </div>
+      </div>
+
+      <div class="book-card no-popup fade-up">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/fakty-mity-3-zdradzeni.png" alt="Fakty i Mity — Zdradzeni i Oszukani" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Zdradzeni i Oszukani</div>
+          <div class="book-vol">Fakty i Mity · Tom III</div>
+        </div>
+      </div>
+
+      <div class="book-card fade-up" data-book="burza">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/fakty-mity-5-burza.png" alt="Fakty i Mity — Burza nad Niemnem · Okręgi Wileński i Nowogrodzki AK" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Burza nad Niemnem</div>
+          <div class="book-vol">Fakty i Mity · Tom V · Okręgi Wileński i Nowogrodzki AK</div>
+        </div>
+      </div>
+
+      <!-- ── INNE PUBLIKACJE ── -->
+      <div class="books-separator fade-up">
+        <div class="books-sep-label">Pozostałe Publikacje</div>
+      </div>
+
+      <div class="book-card no-popup fade-up">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/reklama.jpg" alt="Książki Historyczno-Biograficzne — Edward Mackiewicz" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Książki Historyczno-Biograficzne</div>
+          <div class="book-vol">Pełna oferta wydawnicza</div>
+        </div>
+      </div>
+
+      <div class="book-card no-popup fade-up">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/autobiografia.png" alt="Autobiografia — Wydanie II Rozszerzone" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Autobiografia</div>
+          <div class="book-vol">Wydanie II Rozszerzone</div>
+        </div>
+      </div>
+
+      <div class="book-card no-popup fade-up">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/atlas-wichry.jpg" alt="Atlas Historyczno-Biograficzny Wichry Polskich Dziejów" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Wichry Polskich Dziejów 1918–2021</div>
+          <div class="book-vol">Atlas Historyczno-Biograficzny · Wydanie Główne</div>
+        </div>
+      </div>
+
+      <div class="book-card no-popup fade-up">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/atlas-jubileuszowy.png" alt="Jubileuszowy Atlas Biograficzny — Mężnym Żołnierzom" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Mężnym Żołnierzom</div>
+          <div class="book-vol">Jubileuszowy Atlas Biograficzny</div>
+        </div>
+      </div>
+
+      <div class="book-card no-popup fade-up">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/wichry-iv-polskie-drogi.png" alt="Wichry Polskich Dziejów IV — Polskie Drogi" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Wichry Polskich Dziejów IV</div>
+          <div class="book-vol">Jubileuszowy Atlas Biograficzny · Polskie Drogi · Autobiografia</div>
+        </div>
+      </div>
+
+
+
+      <div class="book-card no-popup fade-up">
+        <div class="book-cover-wrap">
+          <div class="book-cover">
+            <div class="book-spine"></div>
+            <img src="covers/w-zakletym-kregu.png" alt="W Zaklętym Kręgu — Opowiadania" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">W Zaklętym Kręgu</div>
+          <div class="book-vol">Opowiadania</div>
         </div>
       </div>
 
@@ -863,6 +1085,120 @@
   </div>
 </section>
 
+<!-- INTERVIEW -->
+<section id="interview">
+  <div class="container">
+    <div class="interview-inner">
+
+      <div class="section-label">Wywiad</div>
+      <h2 class="section-title">Rozmowa z Autorem</h2>
+      <div class="interview-date">Olsztyn, 5 października 2025 roku</div>
+
+      <div class="qa-block fade-up">
+        <div class="qa-num">Pytanie 1</div>
+        <div class="qa-question">Gdyby mógł Pan spotkać jedną z postaci historycznych z Polski — kto by to był i o co zapytałby Pan tę osobę?</div>
+        <div class="qa-answer">
+          <p>Z pewnością byłby to Premier Rządu Polskiego na Uchodźstwie, gen. broni Władysław Sikorski. Spytałbym go o to, dlaczego podczas postoju na płycie lotniska na Gibraltarze, podczas jego podróży powrotnej z Bliskiego Wschodu w lipcu 1943 roku, jego ochrona nie zabezpieczyła prawidłowo samolotu, którym podróżowała 18-osobowa polska delegacja rządowa, nie wystawiając wzmocnionej warty pilnującej Lancastera. W ten sposób uniknęlibyśmy narodowej tragedii, jaką niewątpliwie była katastrofa samolotu polskiego podczas startu z płyty Gibraltarskiego lotniska w drogę powrotną do Anglii.</p>
+        </div>
+      </div>
+
+      <div class="qa-block fade-up">
+        <div class="qa-num">Pytanie 2</div>
+        <div class="qa-question">Który polski generał Pańskim zdaniem miał najbardziej ciekawe życie — takie, które spokojnie mogłoby być scenariuszem do filmu?</div>
+        <div class="qa-answer">
+          <p>Mam również i takiego generała. Jest nim Wiceadmirał Józef Unrug, ur. 1884 roku w Brandenburg an der Havel jako Joseph Michael Hubert von Uhuru, polski admirał pochodzenia niemieckiego, który dowodził polską Marynarką Wojenną w 1939 roku. Był synem generała majora armii pruskiej Tadeusza Gustawa i saksońskiej hrabianki Izydory von Bona.</p>
+          <p>Przed I wojną światową był on dowódcą niemieckich okrętów podwodnych, a w późniejszym okresie dowódcą całej flotylli tych okrętów Kaiser liche Marine. W trakcie Kampanii wrześniowej dowodził obroną Polskiego Wybrzeża. W 1920 roku kupił za własne pieniądze dla Polski pierwszy okręt wojenny „Pomorzanin". Po wojnie z przyczyn oczywistych nie powrócił do kraju — udał się do Anglii, a po rozwiązaniu Wojska Polskiego wyjechał do Maroka, gdzie pracował jako robotnik portowy. Zmarł w wieku 88 lat w Domu Spokojnej Starości w 1973 roku.</p>
+        </div>
+      </div>
+
+      <div class="qa-block fade-up">
+        <div class="qa-num">Pytanie 3</div>
+        <div class="qa-question">Co wśród sprzętu wojennego używanego przez Polaków w czasie II wojny światowej zaskakuje lub zadziwia Pana w dzisiejszych czasach?</div>
+        <div class="qa-answer">
+          <p>W dzisiejszych czasach obserwujemy szybki rozwój techniki wojennej w każdej dziedzinie. Aktualnie powstają jak grzyby po deszczu nowe rodzaje strasznej i niszczycielskiej broni atomowej, wodorowej, neutronowej, oraz broń kosmiczna, elektroniczna, cybernetyczna i biologiczna. Powstały wojska rakietowe oraz nowoczesne naddźwiękowe samoloty 5 i 6 generacji. A ostatnio — wielozadaniowe drony. Brak jest stopnia porównawczego.</p>
+        </div>
+      </div>
+
+      <div class="qa-block fade-up">
+        <div class="qa-num">Pytanie 4</div>
+        <div class="qa-question">Który moment w historii Polski uważa Pan za najbardziej „filmowy" — taki, który przyciągnąłby dziś tłumy do kina?</div>
+        <div class="qa-answer">
+          <p>Pamiętam lata mojej młodości — lata 60, 70, 80 ubiegłego wieku. Oglądaliśmy wszyscy epopeje narodowe: filmy <em>Ogniem i mieczem</em>, <em>Potop</em> i <em>Pan Wołodyjowski</em>, jak nasi siekli Tatarów i inne dzikie plemiona na Dzikich Polach, czy też piękną opowieść o miłości i przemijaniu w filmach <em>Wojna i Pokój</em>, czy też <em>Cichy Don</em>. W telewizji oglądaliśmy z zapartym tchem poczynania dzielnego Hansa Klosa z Brunerem, czy też Janka Kosa i psa Szarika. To były czasy. A dziś każą nam się zachwycać walką małego Prezesa z Wielkim Tuskiem. Na koniec chciałoby się powiedzieć dwuwiersz:</p>
+          <div class="qa-quote">
+            Małady je gody, szczasliwyje dni —<br>
+            Kak bystryje wody pramczali ani.
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-block fade-up">
+        <div class="qa-num">Pytanie 5</div>
+        <div class="qa-question">Czy Warmia kryje jakieś historie lub legendy, które Pana szczególnie fascynują?</div>
+        <div class="qa-answer">
+          <p>W moim posiadaniu jest gruba księga pt. <em>Historia Prus</em> autorstwa Kanonika Leo z Dobrego Miasta, z XVIII wieku. To są bardzo ciekawe sprawy. O nich dziś nic się nie mówi i nie pisze — zginęły w odmętach historycznych wirów i zamętów.</p>
+          <p>Prusowie na te ziemie przybyli w 550 roku. Ich król Wajdamut miał dziesięciu synów i między nimi podzielił terytorium swojego państwa. Głównym pomocnikiem w rządzeniu był Pruten — naczelny Kapłan, który kierował świątyniami, a Wajdamut — świeckimi sprawami Prusów. Synowie podzielili królestwo między sobą, a od ich imion wzięły nazwy krainy: od Sama — Sambia ze stolicą Królewiec; od Sudu — Sudwa; od Nadro — krainy przy rzekach Dejma, Pregoła i Pisa; od Skalawo — Zalawia po Zalew Kuroński i Kłajpedę z rzeką Niemen. Piąty syn Naktango otrzymał Warmię, Sambię i Bretonię. Szóstym był Barto — od niego Bartonia z Kętrzynem i Bartoszycami. Siódmy syn Galind dał imię Galindii z Elblągiem. Ósmy syn Huggo — Hokerlandię. Dziewiąty syn Warmo dał wreszcie nazwę krainie <strong>Warmia</strong>.</p>
+          <p>Z tej właśnie krainy wywodzi się nasz ród Mackiewiczów.</p>
+        </div>
+      </div>
+
+      <div class="qa-block fade-up">
+        <div class="qa-num">Pytanie 6</div>
+        <div class="qa-question">Jakie 3 cechy wyróżniały dawnych dowódców i są nadal aktualne?</div>
+        <div class="qa-answer">
+          <p>Są to cechy:</p>
+          <ol class="qa-list">
+            <li>Odwaga</li>
+            <li>Odporność na stres</li>
+            <li>Stanowczość i sprawiedliwość</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="qa-block fade-up">
+        <div class="qa-num">Pytanie 7</div>
+        <div class="qa-question">Czy w życiu któregoś z generałów spotkał Pan coś, co zaskoczyło Pana jako historyka?</div>
+        <div class="qa-answer">
+          <p>Tak. Zaskoczył mnie marszałek Józef Piłsudski, który podczas swojego wystąpienia w latach międzywojennych w Sejmie RP II Rzeczypospolitej stwierdził:</p>
+          <div class="qa-quote">„Kto w młodości nie był socjalistą, ten na starość będzie skurwysynem."</div>
+        </div>
+      </div>
+
+      <div class="qa-block fade-up">
+        <div class="qa-num">Pytanie 8</div>
+        <div class="qa-question">Gdyby Pan miał wskazać jedną bitwę, o której każdy obywatel powinien wiedzieć — jaka to byłaby bitwa i dlaczego?</div>
+        <div class="qa-answer">
+          <p>Z pewnością byłaby to zwycięska dla nas Polaków Bitwa Warszawska, nazywana przeze mnie Polskimi Termopilami. To pod Warszawą w sierpniu 1920 roku pękły złudzenia bolszewików o sowieckiej Europie. Wojna Polsko-Bolszewicka trwała 2 lata — od 1919 roku do końca 1921 roku. Patrz: tomik I serii <em>Fakty i Mity</em> mojego autorstwa.</p>
+        </div>
+      </div>
+
+      <div class="qa-block fade-up">
+        <div class="qa-num">Pytanie 9</div>
+        <div class="qa-question">Jak Pan myśli — co by najbardziej zaskoczyło dawnego polskiego wojownika, gdyby zobaczył współczesne wojsko polskie?</div>
+        <div class="qa-answer">
+          <p>Zaskoczyłoby go wszystko. Przede wszystkim rozwój techniki w ogóle — cywilnej i wojskowej. W zależności od tego, kiedy stracił kontakt z naszą dzisiejszą rzeczywistością, mógłby nie wytrzymać spotkania z naszą cywilizacją.</p>
+        </div>
+      </div>
+
+      <div class="qa-block fade-up">
+        <div class="qa-num">Pytanie 10</div>
+        <div class="qa-question">Dlaczego warto dzisiaj, w dobie Internetu i TikToka, wracać do historii Polski? Co może w niej znaleźć młody człowiek?</div>
+        <div class="qa-answer">
+          <p>Biorąc pod uwagę prawdę, że historia się powtarza — że jest matką wynalazków i w ogóle jest nauką, lub widzą ją jako naukę uniwersalną — dlatego też niezależnie od wieku, każdy dorosły człowiek przy zdrowych zmysłach z historii może korzystać bardzo dużo. Na pewno w zależności od poziomu inteligencji, bo możliwości, jakie nam daje historia, są różne oraz nieskończenie duże.</p>
+        </div>
+      </div>
+
+      <div class="interview-sign fade-up">— Edward Mackiewicz</div>
+
+      <div class="interview-pdf fade-up">
+        <a href="wywiad.pdf" target="_blank" class="btn-pdf">
+          ↓ &nbsp;Pobierz wywiad w formacie PDF
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Edward Mackiewicz</div>
@@ -925,7 +1261,7 @@
     burza: {
       title: 'Burza nad Niemnem',
       vol: '',
-      cover: 'covers/mackiewicz-burza-nad-niemnem-001.jpg',
+      cover: 'covers/fakty-mity-5-burza.png',
       desc: 'Panorama burzliwych dziejów Ziemi Wileńskiej — opowieść o Polakach, którzy przez ponad 1000 lat zamieszkiwali te ziemie i walczyli o swoją tożsamość. Niemen, ta wielka polska rzeka, był świadkiem chwały i tragedii. Autor przywołuje historię od czasów Jagiellonów, przez walki Armii Krajowej, aż po powojenne wysiedlenia. To książka o tym, że ojczyzna to ziemia — i ta ziemia pamięta.',
       year: '2018', isbn: '978-83-950297-5-2', edition: 'Wydanie II'
     },

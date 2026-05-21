@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"updated-files-21-05-2026/okladki-do-strony/edward — kopia.jpg\" covers/portrait.jpg)",
+      "Bash(cp \"updated-files-21-05-2026/okladki-do-strony/okladka-fakty-i-mity-bitwa-warszawska.png\" covers/fakty-mity-1-bitwa.png)",
+      "Bash(cp \"updated-files-21-05-2026/okladki-do-strony/2 tom.png\"            covers/fakty-mity-2-najezdcy.png)",
+      "Bash(cp \"updated-files-21-05-2026/okladki-do-strony/3 tom.png\"            covers/fakty-mity-3-zdradzeni.png)",
+      "Bash(cp \"updated-files-21-05-2026/okladki-do-strony/5 tom.png\"            covers/fakty-mity-5-burza.png)"
+    ]
+  }
+}
